@@ -1,8 +1,7 @@
 export interface Employee {
-    nombre: string,
-    apellido: string,
-    password: string,
-    numero_empleado: number,
-    role: 'Cargador' | 'Chofer' | 'Auxiliar'
+  id?: string,
+  nombre: string,
+  no_empleado: string,
+  role: 'Cargador' | 'Chofer' | 'Auxiliar'
 
 }

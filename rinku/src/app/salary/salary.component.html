@@ -1,1 +1,57 @@
-<p>salary works!</p>
+<div class="row my-2">
+  <div class="col-10 mx-auto">
+    <label for="employee"
+      class="form-label">Empleado</label>
+    <select id="employee"
+      class="form-select"
+      [(ngModel)]="selectedEmployee"
+      (change)="onEmployeeChange()"
+      name="employee">
+      <option value="">Seleccionar empleado...</option>
+      <option *ngFor="let employee of employees"
+        [value]="employee.id">{{ employee.nombre }}</option>
+    </select>
+  </div>
+</div>
+<div *ngIf="employeeMovements">
+  <div class="tablero">
+    <h2>Tablero de Salarios</h2>
+    <div class="movimientos-empleados">
+      <h4>Movimientos de Empleados</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>No. Empleado</th>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th>Mes</th>
+            <th>Cantidad de Entregas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movement of employeeMovements">
+            <td>{{ movement.no_empleado }}</td>
+            <td>{{ movement.nombre }}</td>
+            <td>{{ movement.role }}</td>
+            <td>{{ movement.mes }}</td>
+            <td>{{ movement.cantidad_entregas }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="salario-adicional">
+      <h3>Salario Adicional</h3>
+      <p>{{ additionalSalary }}</p>
+    </div>
+    <div class="salario-total">
+      <h3>Salario Total</h3>
+      <p>{{ totalSalary }}</p>
+    </div>
+    <div class="detalles-salario">
+      <h3>Detalles del Salario</h3>
+      <ul>
+        <li *ngFor="let detail of salaryDetails">{{ detail }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

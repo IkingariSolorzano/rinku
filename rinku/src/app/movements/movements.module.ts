@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MovementsComponent } from './movements.component';
 
@@ -9,7 +10,8 @@ import { MovementsComponent } from './movements.component';
     MovementsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     MovementsComponent
