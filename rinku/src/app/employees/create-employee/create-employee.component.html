@@ -1,0 +1,31 @@
+<!-- <form (submit)="saveEmployee()"> -->
+<form >
+    <div>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="employee.name" required>
+    </div>
+  
+    <div>
+      <label for="employeeNumber">Número de empleado:</label>
+      <input type="text" id="employeeNumber" name="employeeNumber" [(ngModel)]="employee.employeeNumber" required>
+    </div>
+  
+    <div>
+      <label>Rol:</label>
+      <div>
+        <input type="radio" id="chofer" name="role" value="Chofer" [(ngModel)]="employee.role" required>
+        <label for="chofer">Chofer</label>
+      </div>
+      <div>
+        <input type="radio" id="cargador" name="role" value="Cargador" [(ngModel)]="employee.role" required>
+        <label for="cargador">Cargador</label>
+      </div>
+      <div>
+        <input type="radio" id="auxiliar" name="role" value="Auxiliar" [(ngModel)]="employee.role" required>
+        <label for="auxiliar">Auxiliar</label>
+      </div>
+    </div>
+  
+    <button type="submit">Guardar</button>
+  </form>
+  
