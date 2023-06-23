@@ -14,8 +14,6 @@ this project was created by Ikingari Solorzano in order to get a position as Ful
 - Considerar 4 semanas trabajadas por mes.
 
 
-
-
 ## Technologies
 
 
