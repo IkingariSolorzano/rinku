@@ -1,1 +1,61 @@
-<p>employees works!</p>
+<div class="card"
+  *ngIf="location==='home'">
+  <div class="card-header">
+    <div class="card-title">Welcome!</div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col m-3 p-5 btn btn-primary shadow-sm"
+        (click)="location='add-employee'">
+        <a>+ Añadir empleado </a>
+      </div>
+      <div class="col m-3 p-5 btn btn-primary shadow-sm"
+        (click)="location='update-employee'">
+        <a>+ Añadir movimientos </a>
+      </div>
+      <div class="col m-3 p-5 btn btn-primary shadow-sm"
+        (click)="location='list-movs'">
+        <a> Ver cálculos </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card"
+  *ngIf="location==='add-employee'">
+  <div class="card-header">
+    <div class="card-title">Alta de empleadoos</div>
+  </div>
+  <div class="card-body">
+    <app-add-employee></app-add-employee>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <div class="btn btn-outline-secondary me-0"
+      (click)="location='home'">Cancelar</div>
+  </div>
+</div>
+<div class="card"
+  *ngIf="location==='update-employee'">
+  <div class="card-header">
+    <div class="card-title">Actualizar empleado</div>
+  </div>
+  <div class="card-body">
+    <app-movements></app-movements>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <div class="btn btn-outline-secondary me-0"
+      (click)="location='home'">Cancelar</div>
+  </div>
+</div>
+<div class="card"
+  *ngIf="location==='list-movs'">
+  <div class="card-header">
+    <div class="card-title">Calcular</div>
+  </div>
+  <div class="card-body">
+    <app-salary></app-salary>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <div class="btn btn-outline-secondary me-0"
+      (click)="location='home'">Cancelar</div>
+  </div>
+</div>

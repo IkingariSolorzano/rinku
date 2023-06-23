@@ -1,0 +1,40 @@
+<h2>Añadir Empleado</h2>
+<form (submit)="onSubmit()">
+  <div class="form-group">
+    <label class="form-label"
+      for="nombre">Nombre:</label>
+    <input class="form-control"
+      type="text"
+      id="nombre"
+      name="nombre"
+      [(ngModel)]="employee.nombre"
+      required>
+  </div>
+  <div class="form-group">
+    <label class="form-label"
+      for="noEmpleado">No. Empleado:</label>
+    <input class="form-control"
+      type="text"
+      id="noEmpleado"
+      name="noEmpleado"
+      [(ngModel)]="employee.no_empleado"
+      required>
+  </div>
+  <div class="form-group">
+    <label class="form-label"
+      for="role">Role:</label>
+    <select class="form-select"
+      id="role"
+      name="role"
+      [(ngModel)]="employee.role"
+      required>
+      <option value="Cargador">Cargador</option>
+      <option value="Chofer">Chofer</option>
+      <option value="Auxiliar">Auxiliar</option>
+    </select>
+  </div>
+  <div class="form-group mt-3">
+    <button class="btn btn-success"
+      type="submit">Guardar</button>
+  </div>
+</form>

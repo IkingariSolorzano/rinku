@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent {
+  location: string = 'home';
+
+  constructor() {
+  }
 
 }

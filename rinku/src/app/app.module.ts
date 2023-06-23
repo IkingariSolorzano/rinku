@@ -3,17 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CreateEmployeeComponent } from './employees/create-employee/create-employee.component';
-import { EmployeesComponent } from './employees/employees.component';
+import { SalaryComponent } from './salary/salary.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MovementsModule } from './movements/movements.module';
+import { EmployeesModule } from './employees/employees.module';
+import { SalaryModule } from './salary/salary.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateEmployeeComponent,
-    EmployeesComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    MovementsModule,
+    EmployeesModule,
+    SalaryModule,
     FormsModule
   ],
   providers: [],
