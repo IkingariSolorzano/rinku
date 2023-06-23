@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\MovementController;
+use App\Http\Controllers\Api\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +22,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
+| Estas son las rutas para USUARIOS
+ */
 Route::post('register', [AuthController::class, 'register']);
 Route::get('login', [AuthController::class, 'login']);
+/*
+| Estas son las rutas para EMPLEADOS
+ */
+Route::post('employees', [EmployeeController::class, 'store']);
+Route::put('employees/{id}', [EmployeeController::class, 'update']);
+Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
+Route::get('employees', [EmployeeController::class, 'index']);
+
+/*
+| Estas son las rutas para MOVIMIENTOS
+ */
+Route::get('movements', [MovementController::class, 'index']);
+Route::post('movements', [MovementController::class, 'store']);
+Route::put('movements/{id}', [MovementController::class, 'update']);
+Route::delete('movements/{id}', [MovementController::class, 'destroy']);
+
+/*
+| Estas son las rutas para MOVIMIENTOS
+ */
+Route::get('/employee/movements', [SalaryController::class, 'getEmployeeMovements']);
+Route::post('/movement/update', [SalaryController::class, 'updateMovementQuantity']);
+Route::get('/salary/calculate', [SalaryController::class, 'calculateSalary']);
+Route::get('/salary/additional', [SalaryController::class, 'calculateAdditionalSalary']);
+Route::get('/salary/total', [SalaryController::class, 'calculateTotalSalary']);
+Route::get('/salary/details', [SalaryController::class, 'calculateSalaryDetails']);
+Route::get('/salary/payment', [SalaryController::class, 'calculatePayment']);
