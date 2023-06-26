@@ -13,45 +13,143 @@
     </select>
   </div>
 </div>
-<div *ngIf="employeeMovements">
+<div *ngIf="movements.length>0">
   <div class="tablero">
     <h2>Tablero de Salarios</h2>
     <div class="movimientos-empleados">
-      <h4>Movimientos de Empleados</h4>
-      <table>
+      <table class="table table-hover">
         <thead>
           <tr>
-            <th>No. Empleado</th>
+            <th>#</th>
             <th>Nombre</th>
             <th>Rol</th>
             <th>Mes</th>
             <th>Cantidad de Entregas</th>
+            <th>Accion</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let movement of employeeMovements">
+          <tr *ngFor="let movement of movements">
             <td>{{ movement.no_empleado }}</td>
             <td>{{ movement.nombre }}</td>
             <td>{{ movement.role }}</td>
-            <td>{{ movement.mes }}</td>
+            <td>{{ meses[movement.mes -1] }}</td>
             <td>{{ movement.cantidad_entregas }}</td>
+            <td>
+              <div class="btn btn-sm btn-primary"
+                (click)="calcular(movement)">Calcular</div>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="salario-adicional">
-      <h3>Salario Adicional</h3>
-      <p>{{ additionalSalary }}</p>
-    </div>
-    <div class="salario-total">
-      <h3>Salario Total</h3>
-      <p>{{ totalSalary }}</p>
-    </div>
-    <div class="detalles-salario">
-      <h3>Detalles del Salario</h3>
-      <ul>
-        <li *ngFor="let detail of salaryDetails">{{ detail }}</li>
-      </ul>
+  </div>
+</div>
+<div class="card"
+  *ngIf="recibo.vales !== ''">
+  <div class="card-body mx-4">
+    <div class="container">
+      <p class="h4 m-3 text-center">Recibo de Nómina del Mes de {{ recibo.mes }}</p>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="row">
+            <div>Nombre: &nbsp;<span class="fw-bold">{{recibo.nombre}}</span></div>
+          </div>
+          <div class="row">
+            <div>Puesto: &nbsp;<span class="fw-bold">{{recibo.puesto}}</span></div>
+          </div>
+        </div>
+        <div class="col text-end">
+          <div class="row">
+            <div>Fecha: &nbsp; <span class="fw-semibol text-primary">{{ currentDate | date: 'dd MM YYYY'}}</span></div>
+          </div>
+          <div class="row">
+            <div>Empleado: &nbsp; <span class="fw-semibold">#{{recibo.no_empleado}}</span></div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Horas trabajadas</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ recibo.horas}}</p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Salario base</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.base | currency}} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Bono</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.bono | currency}} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Entregas realizadas</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end text-primary"> {{ recibo.entregas }} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Pago por entregas</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.pagoEntregas }} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Percepción Bruta</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.salarioBruto }} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Percepción neta</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.salarioNeto }} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Pago en efectivo</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.efectivo }} </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Vales de despensa</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end"> {{ recibo.vales }} </p>
+        </div>
+        <hr>
+      </div>
     </div>
   </div>
 </div>

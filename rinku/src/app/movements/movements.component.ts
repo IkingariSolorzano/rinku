@@ -14,7 +14,7 @@ export class MovementsComponent implements OnInit {
   selectedEmployee: string = '';
   selectedEmployeeNumber: string = '';
   selectedEmployeeRole: string = '';
-  selectedMonth: number = 0;
+  selectedMonth: string = '';
 
   entregas: number = 0;
 
@@ -42,25 +42,27 @@ export class MovementsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const movementData = {
-      employee_id: this.selectedEmployee,
-      mes: this.selectedMonth,
-      cantidad_entregas: this.entregas
-    };
+    if (this.entregas > 0) {
+      const movementData = {
+        employee_id: this.selectedEmployee,
+        mes: this.selectedMonth,
+        cantidad_entregas: this.entregas
+      };
 
-    this.movementService.getMovementsByEmployee(parseInt(movementData.employee_id)).subscribe(
-      response => {
-        console.log(response);
-      }
-    );
-
-    this.movementService.createMovement(movementData).subscribe(response => {
-      if (response) {
-        alert('El movimiento se ha registrado correctamente.');
-        window.location.reload();
-      }
-    }, error => {
-      console.log(error);
-    });
+      this.movementService.createMovement(movementData).subscribe(response => {
+        if (response) {
+          alert('El movimiento se ha registrado correctamente.');
+          window.location.reload();
+        }
+      }, error => {
+        let firstSlice = error.error.message.slice(53);
+        let indice = firstSlice.indexOf('(');
+        let end = firstSlice.length - indice
+        let secondSlice = firstSlice.slice(0, -end)
+        alert(secondSlice)
+      });
+    } else {
+      alert('La cantidad de entregas no puede ser 0')
+    }
   }
 }

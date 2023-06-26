@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovementService {
-  private apiUrl = 'http://localhost/rinku/rinku_api/public/api'; // Reemplaza con la URL correcta de tu API
+  private apiUrl = 'http://localhost/rinku/rinku_api/public/api';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class MovementService {
   }
 
   createMovement(movementData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/movements`, movementData);
+    return this.http.post(`${this.apiUrl}/movement/update`, movementData);
   }
 
   updateMovement(id: number, movementData: any): Observable<any> {
