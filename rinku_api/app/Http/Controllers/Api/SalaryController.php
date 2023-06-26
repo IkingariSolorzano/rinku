@@ -8,6 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class SalaryController extends Controller
 {
+    public function updateMovementQuantity(Request $request)
+    {
+        $employee_id = $request->input('employee_id');
+        $mesT = $request->input('mes');
+        $cantidad_entregas = $request->input('cantidad_entregas');
+
+        // dd($mesT);
+
+        DB::select("CALL updateEntregas(?, ?, ?)", [$employee_id, $mesT, $cantidad_entregas]);
+
+        return response()->json(['message' => 'Movement quantity updated successfully']);
+    }
+
     public function getEmployeeMovements(Request $request)
     {
         $employeeId = $request->input('employee_id');
@@ -17,57 +30,15 @@ class SalaryController extends Controller
         return response()->json($results);
     }
 
-    public function updateMovementQuantity(Request $request)
-    {
-        $movementId = $request->input('movement_id');
-        $cantidadEntregas = $request->input('cantidad_entregas');
-
-        DB::select("CALL updateMovementQuantity(?, ?)", [$movementId, $cantidadEntregas]);
-
-        return response()->json(['message' => 'Movement quantity updated successfully']);
-    }
-
     public function calculateSalary(Request $request)
     {
         $employeeId = $request->input('employee_id');
+        $mesT = $request->input('mes');
 
-        $results = DB::select("CALL calculateSalary(?)", [$employeeId]);
+        $results = DB::select("CALL calcular_salario(?, ?, @horas_base, @salario_base, @bono, @pago_entregas, @salario_bruto, @salario_neto, @pago_efectivo, @pago_vales)", [$employeeId, $mesT]);
 
-        return response()->json($results);
-    }
+        $salaryResults = DB::select("SELECT @horas_base AS horas_base, @salario_base AS salario_base, @bono AS bono, @pago_entregas AS pago_entregas, @salario_bruto AS salario_bruto, @salario_neto AS salario_neto, @pago_efectivo AS pago_efectivo, @pago_vales AS pago_vales");
 
-    public function calculateAdditionalSalary(Request $request)
-    {
-        $movementId = $request->input('movement_id');
-
-        $results = DB::select("CALL calculateAdditionalSalary(?)", [$movementId]);
-
-        return response()->json($results);
-    }
-    public function calculateTotalSalary(Request $request)
-    {
-        $employeeId = $request->input('employee_id');
-
-        $results = DB::select("CALL calculateTotalSalary(?)", [$employeeId]);
-
-        return response()->json($results);
-    }
-
-    public function calculateSalaryDetails(Request $request)
-    {
-        $employeeId = $request->input('employee_id');
-
-        $results = DB::select("CALL calculateSalaryDetails(?)", [$employeeId]);
-
-        return response()->json($results);
-    }
-
-    public function calculatePayment(Request $request)
-    {
-        $employeeId = $request->input('employee_id');
-
-        $results = DB::select("CALL calculatePayment(?)", [$employeeId]);
-
-        return response()->json($results);
+        return response()->json($salaryResults[0]);
     }
 }

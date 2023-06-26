@@ -49,7 +49,3 @@ Route::delete('movements/{id}', [MovementController::class, 'destroy']);
 Route::get('/employees/movements', [SalaryController::class, 'getEmployeeMovements']);
 Route::post('/movement/update', [SalaryController::class, 'updateMovementQuantity']);
 Route::get('/salary/calculate', [SalaryController::class, 'calculateSalary']);
-Route::get('/salary/additional', [SalaryController::class, 'calculateAdditionalSalary']);
-Route::get('/salary/total', [SalaryController::class, 'calculateTotalSalary']);
-Route::get('/salary/details', [SalaryController::class, 'calculateSalaryDetails']);
-Route::get('/salary/payment', [SalaryController::class, 'calculatePayment']);

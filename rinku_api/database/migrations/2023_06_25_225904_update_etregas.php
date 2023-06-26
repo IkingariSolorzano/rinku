@@ -25,15 +25,15 @@ return new class extends Migration
 
         SELECT cantidad_entregas INTO existQty
         FROM movements
-        WHERE employee_id = emplyeeId AND mes = mesT;
+        WHERE employee_id = employeeId AND mes = mesT;
 
         IF existQty IS NOT NULL THEN
             UPDATE movements
             SET cantidad_entregas = existQty + cantidadEntregas
-            WHERE (employee_id = emplyeeId AND mes = mesT);
+            WHERE employee_id = employeeId AND mes = mesT;
         ELSE
             INSERT INTO movements (employee_id, mes, cantidad_entregas)
-            VALUES (employeeId, mes, cantidadEntregas);
+            VALUES (employeeId, mesT, cantidadEntregas);
         END IF;
     END
     EOT;
