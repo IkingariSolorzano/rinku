@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('no_empleado');
+            $table->string('no_empleado')->unique();
             $table->enum('role', ['Cargador', 'Auxiliar', 'Chofer']);
             $table->timestamps();
         });

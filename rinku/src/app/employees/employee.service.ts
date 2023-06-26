@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiUrl = 'http://localhost/rinku/rinku_api/public/api/employees'; // Reemplaza con la URL correcta de tu API
+  private apiUrl = 'http://localhost/rinku/rinku_api/public/api/employees';
+  private apiMovs = 'http://localhost/rinku/rinku_api/public/api/movements';
 
   constructor(private http: HttpClient) { }
 
@@ -33,8 +34,8 @@ export class EmployeeService {
   getEmployeeSalary(employeeId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/salary/details?employee_id=${employeeId}`);
   }
-  getEmployeeMovements(employeeId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/salary/movements`);
+  getEmployeeMovements(): Observable<any> {
+    return this.http.get(`${this.apiMovs}`);
   }
   calculateAdditionalSalary(employeeId: number): Observable<any> {
     const url = `${this.apiUrl}/${employeeId}/additional-salary`;

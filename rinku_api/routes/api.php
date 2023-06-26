@@ -25,15 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /*
 | Estas son las rutas para USUARIOS
  */
-Route::post('register', [AuthController::class, 'register']);
-Route::get('login', [AuthController::class, 'login']);
+// Route::post('register', [AuthController::class, 'register']);
+// Route::get('login', [AuthController::class, 'login']);
 /*
 | Estas son las rutas para EMPLEADOS
  */
-Route::post('employees', [EmployeeController::class, 'store']);
-Route::put('employees/{id}', [EmployeeController::class, 'update']);
-Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
 Route::get('employees', [EmployeeController::class, 'index']);
+Route::post('employees', [EmployeeController::class, 'store']);
+// Route::put('employees/{id}', [EmployeeController::class, 'update']);
+// Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
 
 /*
 | Estas son las rutas para MOVIMIENTOS
@@ -46,7 +46,7 @@ Route::delete('movements/{id}', [MovementController::class, 'destroy']);
 /*
 | Estas son las rutas para MOVIMIENTOS
  */
-Route::get('/employee/movements', [SalaryController::class, 'getEmployeeMovements']);
+Route::get('/employees/movements', [SalaryController::class, 'getEmployeeMovements']);
 Route::post('/movement/update', [SalaryController::class, 'updateMovementQuantity']);
 Route::get('/salary/calculate', [SalaryController::class, 'calculateSalary']);
 Route::get('/salary/additional', [SalaryController::class, 'calculateAdditionalSalary']);

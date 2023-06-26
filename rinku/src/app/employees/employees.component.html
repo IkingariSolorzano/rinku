@@ -5,29 +5,26 @@
 </div>
 <div class="container"
   *ngIf="location==='home'">
-  <div class="card">
+  <div class="card col-6 mx-auto">
     <div class="card-header">
       <div class="card-title">Nominas</div>
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="col m-3 p-3 btn btn-primary shadow-sm"
-          (click)="location='add-employee'">
-          <a>+ Añadir empleado </a>
+        <div class="col m-3 p-3 btn btn-primary shadow-sm d-flex align-items-center justify-content-center"
+          (click)="location='add-employee'"> <a>+ Añadir empleado</a>
         </div>
-        <div class="col m-3 p-3 btn btn-primary shadow-sm"
-          (click)="location='update-employee'">
-          <a>+ Añadir movimientos </a>
+        <div class="col m-3 p-3 btn btn-primary shadow-sm d-flex align-items-center justify-content-center"
+          (click)="location='update-employee'"> <a>+ Añadir movimientos </a>
         </div>
-        <div class="col m-3 p-3 btn btn-primary shadow-sm"
-          (click)="location='list-movs'">
-          <a> Ver cálculos </a>
+        <div class="col m-3 p-3 btn btn-primary shadow-sm d-flex align-items-center justify-content-center"
+          (click)="location='list-movs'"> <a> Ver cálculos </a>
         </div>
       </div>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="card">
+    <div class="card col-6 mx-auto">
       <div class="div card-body">
         <div class="table-responsive">
           <table class="table table-hover">
@@ -51,7 +48,7 @@
     </div>
   </div>
 </div>
-<div class="card"
+<div class="card col-6 mx-auto"
   *ngIf="location==='add-employee'">
   <div class="card-header">
     <div class="card-title">Alta de empleadoos</div>
@@ -64,20 +61,35 @@
       (click)="location='home'">Cancelar</div>
   </div>
 </div>
-<div class="card"
+<ng-container class="card col-6 mx-auto"
   *ngIf="location==='update-employee'">
-  <div class="card-header">
-    <div class="card-title">Actualizar empleado</div>
+  <div class="card"
+    *ngIf="employees.length>0; else emptyEmployees">
+    <div class="card-header">
+      <div class="card-title">Añadir movimientos</div>
+    </div>
+    <div class="card-body">
+      <app-movements></app-movements>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+      <div class="btn btn-outline-secondary me-0"
+        (click)="location='home'">Cancelar</div>
+    </div>
   </div>
-  <div class="card-body">
-    <app-movements></app-movements>
-  </div>
-  <div class="card-footer d-flex justify-content-end">
-    <div class="btn btn-outline-secondary me-0"
-      (click)="location='home'">Cancelar</div>
-  </div>
-</div>
-<div class="card"
+  <ng-template #emptyEmployees
+    class="card col-6 mx-auto">
+    <div class="card col-6 mx-auto">
+      <div class="card-body">
+        <h1 class="text-center">No se encontraron empleados registrados</h1>
+      </div>
+      <div class="card-footer d-flex justify-content-end">
+        <div class="btn btn-outline-secondary me-0"
+          (click)="location='home'">Cancelar</div>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+<div class="card col-6 mx-auto"
   *ngIf="location==='list-movs'">
   <div class="card-header">
     <div class="card-title">Calcular</div>

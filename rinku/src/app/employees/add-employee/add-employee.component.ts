@@ -24,12 +24,17 @@ export class AddEmployeeComponent {
   onSubmit() {
     this.employeeService.createEmployee(this.employee).subscribe(response => {
       if (response) {
-        alert('El empleado se ha dado de alta.');
+        alert('¡El empleado se ha dado de alta exitosament!');
         window.location.reload();
         // Redirige a la página principal
       }
     }, error => {
-      console.log(error); // Muestra los errores en la consola
+      if (error.error.message.includes('Duplicate')) {
+        alert('Ese numero de empleado ya ha sido registrado.');
+      } else {
+        console.log(); // Muestra los errores en la consola
+
+      }
     });
   }
 

@@ -33,48 +33,8 @@ export class SalaryComponent implements OnInit {
     );
   }
 
-  onEmployeeChange(): void {
-    const selectedEmployee = this.employees.find(employee => employee.id == this.selectedEmployee);
-    if (selectedEmployee) {
-      this.selectedEmployeeId = selectedEmployee.no_empleado;
-      this.selectedEmployeeRole = selectedEmployee.role;
-      this.loadEmployeeMovements();
-      this.calculateAdditionalSalary();
-    } else {
-      this.selectedEmployeeId = 0;
-      this.selectedEmployeeRole = undefined;
-      this.employeeMovements = [];
-      this.additionalSalary = 0;
-    }
+  onEmployeeChange() {
+
   }
 
-  loadEmployeeMovements(): void {
-    if (this.selectedEmployeeId !== 0) {
-      this.employeeService.getEmployeeMovements(this.selectedEmployeeId).subscribe(
-        (response: any) => {
-          this.employeeMovements = response;
-        },
-        (error: any) => {
-          console.error('Error occurred while retrieving employee movements:', error);
-        }
-      );
-    } else {
-      this.employeeMovements = [];
-    }
-  }
-
-  calculateAdditionalSalary(): void {
-    if (this.selectedEmployeeId !== 0) {
-      this.employeeService.calculateAdditionalSalary(this.selectedEmployeeId).subscribe(
-        (response: any) => {
-          this.additionalSalary = response.additional_salary;
-        },
-        (error: any) => {
-          console.error('Error occurred while calculating additional salary:', error);
-        }
-      );
-    } else {
-      this.additionalSalary = 0;
-    }
-  }
 }
